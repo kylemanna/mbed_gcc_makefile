@@ -27,11 +27,11 @@
 #	LPC11C24
 #	LPC11U35_401
 #	STM32F407
-BOARD = KL25Z
+BOARD ?= KL25Z
 include Platforms
 
 # path to the mbed library
-MBED_DIR = mbed
+MBED_DIR ?= mbed
 
 # toolchain specific
 TOOLCHAIN = arm-none-eabi-
@@ -170,7 +170,7 @@ clean:
 	$(RM) $(TARGET).$(TARGET_EXT) $(TARGET).bin $(TARGET).map $(OBJ_FOLDER)*.* $(OBJ_FOLDER)
 	@echo ' '
 
-print_info:
+print_info: $(OBJ_FOLDER)$(TARGET).$(TARGET_EXT)
 	@echo 'Printing size'
 	arm-none-eabi-size --totals $(OBJ_FOLDER)$(TARGET).$(TARGET_EXT)
 	arm-none-eabi-objcopy -O srec $(OBJ_FOLDER)$(TARGET).$(TARGET_EXT) $(OBJ_FOLDER)$(TARGET).s19
